@@ -70,6 +70,7 @@ public class AccountServlet extends HttpServlet {
 						 sped.setCittà(città);
 						 daoSped.doSave(sped);
 						 
+						 
 					}
 					
 					daoUser.doUpdateSpedizione(user.getEmail(), ind, cap);
