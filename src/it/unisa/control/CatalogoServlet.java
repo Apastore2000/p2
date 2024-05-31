@@ -29,38 +29,35 @@ public class CatalogoServlet extends HttpServlet {
 		String redirectedPage = request.getParameter("page");;
 	
 		try {
-			if(action!=null) {
-				if(action.equalsIgnoreCase("add")) {
-					bean.setNome(request.getParameter("nome"));
-					bean.setDescrizione(request.getParameter("descrizione"));
-					bean.setIva(request.getParameter("iva"));
-					bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
-					bean.setQuantità(Integer.parseInt(request.getParameter("quantità")));
-					bean.setPiattaforma(request.getParameter("piattaforma"));
-					bean.setGenere(request.getParameter("genere"));
-					bean.setImmagine(request.getParameter("img"));
-					bean.setDataUscita(request.getParameter("dataUscita"));
-					bean.setDescrizioneDettagliata(request.getParameter("descDett"));
-					bean.setInVendita(true);
-					prodDao.doSave(bean);
-				}
-				
-				else if(action.equalsIgnoreCase("modifica")) {
-					
-					bean.setIdProdotto(Integer.parseInt(request.getParameter("id")));
-					bean.setNome(request.getParameter("nome"));
-					bean.setDescrizione(request.getParameter("descrizione"));
-					bean.setIva(request.getParameter("iva"));
-					bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
-					bean.setQuantità(Integer.parseInt(request.getParameter("quantità")));
-					bean.setPiattaforma(request.getParameter("piattaforma"));
-					bean.setGenere(request.getParameter("genere"));
-					bean.setImmagine(request.getParameter("img"));
-					bean.setDataUscita(request.getParameter("dataUscita"));
-					bean.setDescrizioneDettagliata(request.getParameter("descDett"));
-					bean.setInVendita(true);
-					prodDao.doUpdate(bean);	
-				}
+            if (action != null) {
+                if (action.equalsIgnoreCase("add")) {
+                    bean.setNome(XSSSanitizer.sanitize(request.getParameter("nome")));
+                    bean.setDescrizione(XSSSanitizer.sanitize(request.getParameter("descrizione")));
+                    bean.setIva(XSSSanitizer.sanitize(request.getParameter("iva")));
+                    bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
+                    bean.setQuantità(Integer.parseInt(request.getParameter("quantità")));
+                    bean.setPiattaforma(XSSSanitizer.sanitize(request.getParameter("piattaforma")));
+                    bean.setGenere(XSSSanitizer.sanitize(request.getParameter("genere")));
+                    bean.setImmagine(XSSSanitizer.sanitize(request.getParameter("img")));
+                    bean.setDataUscita(XSSSanitizer.sanitize(request.getParameter("dataUscita")));
+                    bean.setDescrizioneDettagliata(XSSSanitizer.sanitize(request.getParameter("descDett")));
+                    bean.setInVendita(true);
+                    prodDao.doSave(bean);
+                } else if (action.equalsIgnoreCase("modifica")) {
+                    bean.setIdProdotto(Integer.parseInt(request.getParameter("id")));
+                    bean.setNome(XSSSanitizer.sanitize(request.getParameter("nome")));
+                    bean.setDescrizione(XSSSanitizer.sanitize(request.getParameter("descrizione")));
+                    bean.setIva(XSSSanitizer.sanitize(request.getParameter("iva")));
+                    bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
+                    bean.setQuantità(Integer.parseInt(request.getParameter("quantità")));
+                    bean.setPiattaforma(XSSSanitizer.sanitize(request.getParameter("piattaforma")));
+                    bean.setGenere(XSSSanitizer.sanitize(request.getParameter("genere")));
+                    bean.setImmagine(XSSSanitizer.sanitize(request.getParameter("img")));
+                    bean.setDataUscita(XSSSanitizer.sanitize(request.getParameter("dataUscita")));
+                    bean.setDescrizioneDettagliata(XSSSanitizer.sanitize(request.getParameter("descDett")));
+                    bean.setInVendita(true);
+                    prodDao.doUpdate(bean);
+                }
 
 				request.getSession().removeAttribute("categorie");
 
