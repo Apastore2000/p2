@@ -3,6 +3,11 @@
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>
   </welcome-file-list>
+  <error-page>
+        <error-code>500</error-code>
+        <location>/ERROR500.html</location>
+</error-page>
+  
   <resource-ref>
     <description>JNDI reference to a data source</description>
     <res-ref-name>jdbc/storage</res-ref-name>
